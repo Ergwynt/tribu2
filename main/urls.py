@@ -18,7 +18,7 @@ Including another URLconf
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
-from django.contrib.auth.views import LoginView, LogoutView
+from django.contrib.auth.views import LoginView
 from django.urls import include, path
 
 from shared import views
@@ -26,7 +26,7 @@ from shared import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('login/', LoginView.as_view(), name='login'),
-    path('logout/', LogoutView.as_view(), name='logout'),
+    path('logout/', views.user_logout, name='logout'),
     path('register/', views.user_signup, name='signup'),
     path('users/', views.users, name='users'),
     path('waves/', include('waves.urls')),

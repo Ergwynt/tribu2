@@ -42,8 +42,7 @@ def user_login(request):
 
 def user_logout(request):
     logout(request)
-
-    return redirect('./registration/signup.html')
+    return redirect('login')
 
 
 def user_signup(request):

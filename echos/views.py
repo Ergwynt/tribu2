@@ -1,7 +1,9 @@
 # from echos.models import Echo
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 
 
+@login_required
 def echo(request):
     return render(request, 'wave_detail.html')
 

@@ -2,9 +2,6 @@
 
 {% block body %}
 
-<h1>Toy dentlo</h1>
-<form method="post" action="{% url 'logout' %}">
-  {%csrf_token%}
-  <input type="submit" value="logout">
-</form>
+{% include "./header.html" %}
+
 {% endblock %}
