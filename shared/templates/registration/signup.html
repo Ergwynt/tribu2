@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block body %}
+<div  class="text-center py-3 mt-auto">
+<form method="post" novalidate>
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit" value="Registro">
+    <p>¿Ya tienes una cuenta? <a href="{% url 'login' %}">Haz login aquí</a></p>
+</form>
+</div>
+{% endblock %}
