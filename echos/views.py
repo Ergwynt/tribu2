@@ -2,10 +2,13 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 
+from .models import Echo
+
 
 @login_required
 def echo(request):
-    return render(request, 'wave_detail.html')
+    echos = Echo.objects.all()
+    return render(request, 'wave_detail.html', {'echos': echos})
 
 
 def echo_details(request):
