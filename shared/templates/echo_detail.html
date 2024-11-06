@@ -1,0 +1,37 @@
+{% extends "base.html" %} {% load humanize %}{% block body %} {% include "./header.html" %}
+
+<div class="container my-5 ">
+  <h1 class="mb-4">@{{ echo.user }}</h1>
+  <div class="task-date text-muted mb-3 ">
+    Echo creado el: {{ echo.created_at|date:"d M Y" }} |
+    Ultima vez editado: {{echo.updated_at|timesince}}
+  </div>
+  <div class="row border border-3">
+    
+    <div class="col-12 border border-1">
+      <p class="lead">{{ echo.content}}</p>
+
+    </div>
+    
+    <div class="col-12">
+      {% if waves %}
+      <p>Recent waves:</p>
+      
+      <p>{% include 'echo/waves_list.html' with waves=waves %}</p>
+  
+      {% else %}
+        <p>Not waves yet. Write one</p>
+      
+        {% endif %}
+    </div>
+    
+      
+  
+
+  </div>
+  
+  
+  
+  
+</div>
+{% endblock %}

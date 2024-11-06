@@ -1,0 +1,25 @@
+{% extends "base.html" %} {% block body %} {% include "./header.html" %}
+
+<div class="container">
+  <div class="row justify-content-center">
+    {% for echo in echos %}
+    <div class="col-md-4 mb-4">
+      <div class="card h-100">
+        <div class="card-body">
+          <div class="d-inline p-2 text-bg-primary ">@{{echo.user}}</div>
+          <div class="d-inline p-2 text-bg-dark text-muted small "> Creada el: {{ echo.created_at|date:"d M Y" }}</div>
+          <br>
+          <hr>
+          
+          <p class="card-text">
+            {{ echo.content|truncatewords:20 }}... 
+          </p>
+          <div style="text-align:center;"><a  href="{% url 'echos:echos-details' echo.pk %}"><i class="bi bi-eye-fill"></i></a></div>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
+{% endblock %}

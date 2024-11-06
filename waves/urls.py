@@ -5,6 +5,6 @@ from . import views
 app_name = 'waves'
 
 urlpatterns = [
-    path('waves/<pk>/edit', views.edit_wave, name='edit-wave'),
-    path('waves/<pk>/delete', views.delete_wave, name='delete-wave'),
+    path('wave/<pk>/edit', views.edit_wave, name='edit-wave'),
+    path('wave/<pk>/delete', views.delete_wave, name='delete-wave'),
 ]
