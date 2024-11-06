@@ -1,12 +1,12 @@
 {% block body %} 
 <div class="container">
-    
+
     {% for wave in waves %}
     <div class="card" style="width: 18rem;">
       
       <div class="card-body">
         <h5 class="card-title">@{{wave.user}}</h5>
-        <p class="card-text"> {{ wave.content|truncatewords:20 }}... </p>
+        <p class="card-text"> {{ wave.content|truncatewords:20 }} </p>
         <p class="card-footer">Creada el: {{ wave.updated_at|date:"d M Y" }} </p>
       </div>
     </div>
