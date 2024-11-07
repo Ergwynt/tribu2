@@ -1,28 +1,61 @@
-{% extends "base.html" %} {% block body %} {% include "./header.html" %}
+{% extends "base.html" %}
+
+{% block body %}
+{% include "./header.html" %}
+<h1 style="text-align: center; margin-top: 4%; margin-bottom: 3%;">Lista de Echos</h1>
+
+<!-- Botón para abrir el modal de agregar un nuevo Echo -->
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addEchoModal">
+  Agregar un Echo
+</button>
 
 <div class="container">
   <div class="row justify-content-center">
- 
-
     {% for echo in echos %}
     <div class="col-md-4 mb-4">
       <div class="card h-100">
-        
         <div class="card-body">
-          <div class="d-inline p-2 text-bg-primary ">@{{echo.user}}</div>
-          <div class="d-inline p-2 text-bg-dark text-muted small "> Creada el: {{ echo.created_at|date:"d M Y" }}</div>
-          <br>
+          <div class="d-inline p-2 text-bg-primary">@{{ echo.user }}</div>
+          <div class="d-inline p-2 text-bg-dark text-muted small"> Creada el: {{ echo.created_at|date:"d M Y" }}</div>
           <hr>
-          
-          <p class="card-text">
-            {{ echo.content|truncatewords:15 }}
-          </p>
-          <div style="text-align:center;"><a  href="{% url 'echos:echos-details' echo.pk %}"><i class="bi bi-eye-fill"></i></a></div>
+          <p class="card-text">{{ echo.content|truncatewords:15 }}</p>
+          <div style="text-align:center;">
+            <a href="{% url 'echos:echos-details' echo.pk %}"><i class="bi bi-eye-fill"></i></a>
+          </div>
         </div>
       </div>
     </div>
+    {% empty %}
+    <h1>No hay echos disponibles para ver.</h1> 
     {% endfor %}
   </div>
 </div>
 
+<!-- Modal para agregar un nuevo Echo -->
+<div class="modal fade" id="addEchoModal" tabindex="-1" aria-labelledby="addEchoModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="addEchoModalLabel">Nuevo Echo</h5>
+        <button type="button" class="btn-close bg-danger text-light" data-bs-dismiss="modal" aria-label="Close"><i class="bi bi-x  "></i></button>
+      </div>
+      <div class="modal-body" style="max-height: 400px; overflow-y: auto; padding: 20px;">
+        <form method="POST">
+          {% csrf_token %}
+          <div class="form-group">
+              
+              {{ form }}
+          </div>
+          <div class="d-flex justify-content-center">
+            <input type="submit" class="btn btn-primary mt-3" value="Guardar cambios">
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
 {% endblock %}
+

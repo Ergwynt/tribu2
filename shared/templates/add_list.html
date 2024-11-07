@@ -1,0 +1,15 @@
+{% extends "base.html" %} {% load humanize %}{% block body %} {% include "./header.html" %}
+<form method="POST">
+    {% csrf_token %}
+    <div class="form-group">
+        <label for="{{ form.content.id_for_label }}">Contenido</label>
+        {{ form.content }}
+    </div>
+    <div class="d-flex justify-content-center">
+      <input type="submit" class="btn btn-primary mt-3" value="Guardar cambios">
+    </div>
+  </form>
+
+
+
+{% endblock %}

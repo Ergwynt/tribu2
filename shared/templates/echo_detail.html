@@ -1,37 +1,35 @@
 {% extends "base.html" %} {% load humanize %}{% block body %} {% include "./header.html" %}
 
-<div class="container my-5 ">
-  <h1 class="mb-4">@{{ echo.user }}</h1>
-  <div class="task-date text-muted mb-3 ">
-    Echo creado el: {{ echo.created_at|date:"d M Y" }} |
-    Ultima vez editado: {{echo.updated_at|timesince}}
-  </div>
-  <div class="row border border-3">
-    
-    <div class="col-12 border border-1">
-      <p class="lead">{{ echo.content}}</p>
+<div class="container my-5">
+  <!-- Título del Echo -->
+  <h1 class="mb-4 text-primary">@{{ echo.user }}</h1>
 
-    </div>
-    
+  <!-- Fecha de creación y última edición -->
+  <div class="task-date text-muted mb-3">
+    <small>
+      Echo creado el: {{ echo.created_at|date:"d M Y" }} |
+      Última vez editado: {{ echo.updated_at|timesince }}
+    </small>
+  </div>
+
+  <!-- Contenido principal del Echo -->
+  <div class="row border border-3 rounded p-4 bg-light shadow-sm">
     <div class="col-12">
-      {% if waves %}
-      <p>Recent waves:</p>
-      
-      <p>{% include 'echo/waves_list.html' with waves=waves %}</p>
-  
-      {% else %}
-        <p>Not waves yet. Write one</p>
-      
-        {% endif %}
+      <p class="lead">{{ echo.content }}</p>
     </div>
-    
-      
-  
 
+    <!-- Sección de Waves -->
+    <div class="col-12 mt-4">
+      {% if waves %}
+      <h5 class="text-secondary">Recent Waves:</h5>
+      <div class="list-group">
+        {% include 'echo/waves_list.html' with waves=waves %}
+      </div>
+      {% else %}
+      <p class="text-muted fst-italic">No waves yet. Write one!</p>
+      {% endif %}
+    </div>
   </div>
-  
-  
-  
-  
 </div>
+  </div>
 {% endblock %}
