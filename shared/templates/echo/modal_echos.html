@@ -1,0 +1,28 @@
+<div class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h1 class="modal-title" id="addEchoModalLabel">Nuevo Echo</h1>
+      <button
+        type="button"
+        class="btn-close bg-danger text-light"
+        data-bs-dismiss="modal"
+        aria-label="Close"
+      >
+        <i class="bi bi-x"></i>
+      </button>
+    </div>
+    <form method="POST">
+      {% csrf_token %}
+      <div class="modal-body">
+        <div class="form-group">{{ form }}</div>
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn btn-danger" type="button" data-dismiss="modal">
+          Cancelar
+        </button>
+        <button class="btn btn-primary" type="submit">confirmar</button>
+      </div>
+    </form>
+  </div>
+</div>

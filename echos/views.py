@@ -1,4 +1,4 @@
-# from echos.models import Echo
+
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 
@@ -19,7 +19,7 @@ def echo_details(request, pk):
 
 
 def echo_add(request):
-    # Filtra los Echo del usuario
+    
     echos = Echo.objects.filter(user=request.user)
 
     if request.method == 'POST':
@@ -28,13 +28,13 @@ def echo_add(request):
             new_echo = form.save(commit=False)
             new_echo.user = request.user  
             new_echo.save()
-            # Redirige a la lista de Echo
+            
             return redirect('echos:echos')
 
     else:
         form = AddEchoForm()
 
-    return render(request, 'echo_list.html', {'form': form, 'echos':echos})
+    return render(request, 'echo/modal_echos.html', {'form': form, 'echos':echos})
 
 
 def echo_wave(request):
